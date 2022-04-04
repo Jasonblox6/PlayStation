@@ -25,11 +25,17 @@ router.post('/add', async function(req, res, next) {
 
 });
 
-router.get('/:id', async function(req, res, next) {
+router.get('/get/:id', async function(req, res, next) {
   var id = req.params.id;
   var game = await Game.findById(id)
 
   res.send(game);
+});
+
+router.get('/getAll', async function(req, res, next) {
+  var games = await Game.find();
+
+  res.send(games);
 });
 
 

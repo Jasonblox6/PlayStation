@@ -2,6 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import {Route, Routes} from 'react-router';
 import Library from './routes/Library/Library';
+import Games from './routes/Games/Games';
+import Game from './routes/Game/Game';
+import Signup from './routes/Signup/Signup';
 import Login from './routes/Login/Login';
 import Header from './components/Header/Header';
 import {useEffect, useState} from 'react';
@@ -14,7 +17,6 @@ function App() {
     setJWT(token);
   }
 
-
   return (
     <div className="App">
 
@@ -23,7 +25,7 @@ function App() {
       <Routes>
         {!jwt &&
         <>
-        <Route path="/signup"></Route>
+        <Route path="/signup" element={<Signup/>}></Route>
         <Route path="/" element={<Login handleLogin={login}/>}></Route>
         </>
         }
@@ -31,9 +33,9 @@ function App() {
         <>
         <Route path="/" element={<Library/>}></Route>       
         <Route path="/library" element={<Library token={jwt}/>}></Route>
-        <Route path="/library/:id"></Route>
-        <Route path="/games"></Route>
-        <Route path="/games/:id"></Route>
+        <Route path="/library/:id" element={<Game/>}></Route>
+        <Route path="/games" element={<Games token={jwt}/>}></Route>
+        <Route path="/games/:id" element={<Game/>}></Route>
         </>
         }
         <Route path="*" element={jwt? <Library token={jwt}/> : <Login handleLogin={login}/>}></Route>

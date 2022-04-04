@@ -1,26 +1,44 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router';
 import Auth from '../../services/auth';
-import './Login.css';
+import './Signup.css';
 
-function Login ({handleLogin}) {
+function Signup ({handleLogin}) {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [errorText, setErrorText] = useState("");
+
 
     const submit = async(e) => {
         e.preventDefault();
-        const token = await Auth.login(username, password);
-        handleLogin(token);
+        var resp = await Auth.signUp(username, password, email);
+        setErrorText(resp.message);
+        console.log(resp);
+        if (resp.status === "success"){
+            navigate("/login");
+        }
+
     }
 
 
     return(
     <>
         <div className="Container"> 
+        
+
         <form onSubmit={submit}>
 
             <div className="Formbox">
+            <div>
+                <label className="label">Email</label>
+            </div>
+
+            <div>
+                <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+            </div>
+
             <div>
                 <label className="label">Username</label>
             </div>
@@ -38,8 +56,15 @@ function Login ({handleLogin}) {
             </div>
 
             <div>
-                <button className="button" style={{marginTop:'20px'}} type="submit">Log In</button>
+                <button className="button" style={{marginTop:'20px'}} type="submit">Sign Up</button>
             </div>
+
+            {errorText &&
+            <div className="errorlabel">
+                <label>{errorText}</label>
+            </div>
+            }
+
             </div>
 
         </form>
@@ -53,4 +78,4 @@ function Login ({handleLogin}) {
 
 }
 
-export default Login;
+export default Signup;

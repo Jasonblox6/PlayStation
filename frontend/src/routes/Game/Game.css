@@ -1,0 +1,47 @@
+
+.Container{
+  min-height: 100vh;
+
+}
+
+.GameList{
+width: 80%;
+margin:auto;
+padding-top: 30px;
+}
+
+.GameDisplay{
+width: 100%;
+display:flex;
+flex-direction: column;
+font-size:20px;
+padding-top: 30px;
+}
+
+th{
+  font-weight: normal;
+  text-align: right;
+  width:25%;
+  padding-right: 10px;
+  margin-left: auto;
+}
+
+td{
+  text-align: left;
+  width:50%;
+  max-width: 45%;
+
+}
+
+table{
+  width:30%;
+  margin:auto;
+}
+
+.GameImageDisplay{
+width: auto;
+margin: auto;
+margin-bottom: 10px;
+height: 200px;
+}
+

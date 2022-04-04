@@ -1,5 +1,11 @@
+body{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-color: #264b99;
+}
+
 .App {
   text-align: center;
+  background-color: #ffffff;
 }
 
 .App-logo {

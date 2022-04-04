@@ -13,7 +13,9 @@ router.post('/login', async function(req, res, next) {
       throw Error;
     }
     const token = jwt.sign({username:user.username}, "PSKEY");
-    res.status(200).send(token);
+    const loginModel = {userId: user.id, token: token};
+
+    res.status(200).send(loginModel);
 
   }
 
@@ -22,10 +24,6 @@ router.post('/login', async function(req, res, next) {
   }
 
 });
-
-
-
-
 
 
 router.post('/add', async function(req, res, next) {
@@ -37,12 +35,14 @@ router.post('/add', async function(req, res, next) {
     password: bcrypt.hashSync(password, 10),
     type: type,
   });
+
+  
   try{
     await user.save();
     res.status(201).send("User Added");
   }
   catch (error){
-    res.status(500).send({error: `${error.code}: Error adding user`});
+    res.status(500).send("Error adding user");
   }
 
 });
@@ -57,6 +57,7 @@ router.get('/get/:id', async function(req, res, next) {
     email: 1,
   }).populate("ownedGames");
 
+  console.log(user);
   res.send(user);
 });
 
@@ -90,8 +91,17 @@ router.post('/removeGame', async function(req, res, next) {
 
 });
 
-router.get('/remove', function(req, res, next) {
-  res.send('respond with a resource');
+router.post('/owns/:id', async function(req, res, next) {
+  var id = req.params.id;
+  var userId = req.body.userId;
+  var chosenUser = await User.findById(userId);
+  var foundGame = chosenUser.ownedGames.filter(game=>game.toString() === id);
+  if (foundGame.length > 0){
+    return res.send("owned");
+  }
+  res.send("unowned");
+
 });
+
 
 module.exports = router;
