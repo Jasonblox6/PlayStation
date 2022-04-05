@@ -1,7 +1,6 @@
-
 .Container{
   min-height: 100vh;
-
+  background-image: linear-gradient(#264b99, #3569b8);
 }
 
 .GameList{
@@ -16,6 +15,50 @@ display:flex;
 flex-direction: column;
 font-size:20px;
 padding-top: 30px;
+}
+
+.GameButtonAdd {
+  background-color: #25d651;
+  border: none;
+  color: #000000;
+  padding: 15px 32px;
+  width: 30%;
+  padding: 12px 20px;
+  margin: auto;
+  border: 1px solid #17a864;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.GameButtonRemove {
+  background-color: #bd2121;
+  border: none;
+  color: #000000;
+  padding: 15px 32px;
+  width: 30%;
+  padding: 12px 20px;
+  margin: auto;
+  border: 1px solid #6b0c11;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.GameButtonRemove:hover{
+  cursor:pointer;
+}
+
+.GameButtonAdd:hover{
+  cursor:pointer;
 }
 
 th{

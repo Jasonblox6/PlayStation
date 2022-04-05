@@ -1,3 +1,5 @@
+//Auth Class - Used for login and signup for ease of access and handling of errors.
+
 class Auth{
     async login(username, password){
         let response = await fetch("http://localhost:9000/users/login", {
@@ -5,12 +7,14 @@ class Auth{
             headers: {Accept: "application/json, text/plain, */*", "Content-Type": "application/json"},
             body:JSON.stringify({username:username, password:password})})
 
-        if (response.status != 200){
-            return;
+        if (response.status !== 200){
+            return "error";
         }
 
+        //We succeeded, so need to extract the json elements
         response = await response.json();
 
+        //Store them locally
         localStorage.setItem("token", response.token)
         localStorage.setItem("userId", response.userId)
 

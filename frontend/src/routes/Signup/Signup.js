@@ -4,6 +4,8 @@ import Auth from '../../services/auth';
 import './Signup.css';
 
 function Signup ({handleLogin}) {
+
+    //Create states for the input, and for an error
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -13,9 +15,11 @@ function Signup ({handleLogin}) {
 
     const submit = async(e) => {
         e.preventDefault();
+        //Try to sign them up
         var resp = await Auth.signUp(username, password, email);
+        //Not necessarilly an error in this, but we display whatever message we get back if only briefly
         setErrorText(resp.message);
-        console.log(resp);
+        //If we succeed, we go to the login page
         if (resp.status === "success"){
             navigate("/login");
         }
@@ -24,10 +28,8 @@ function Signup ({handleLogin}) {
 
 
     return(
-    <>
-        <div className="Container"> 
+    <div className="Container"> 
         
-
         <form onSubmit={submit}>
 
             <div className="Formbox">
@@ -68,9 +70,8 @@ function Signup ({handleLogin}) {
             </div>
 
         </form>
-        </div>
+    </div>
     
-    </>
 
     )
 

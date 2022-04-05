@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cors = require('cors');
 require('dotenv/config')
 
+//Include our API routes and Mongoose for MongoDB
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var gamesRouter = require('./routes/games');
@@ -44,8 +45,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// need to add the environment file and add the DB_Connection string
 mongoose.connect(process.env.DB_CONNECTION, () => {
-  console.log("Connected lol");
+  console.log("Connected To Database");
 })
 
 module.exports = app;

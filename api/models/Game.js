@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//Game Model
 const GameSchema = mongoose.Schema({
     name: {type: String, required: true},
     platform: {type: String, required: true},

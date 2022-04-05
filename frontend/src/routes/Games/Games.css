@@ -1,8 +1,4 @@
-.Games {
-    background-color: #264b99;
-  }
-
 .Container{
     min-height: 100vh;
-    background-color: #264b99;
+    background-image: linear-gradient(#264b99, #3569b8);
 }
